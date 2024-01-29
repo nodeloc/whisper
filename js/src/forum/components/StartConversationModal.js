@@ -10,6 +10,7 @@ export default class StartConversationModal extends Modal {
   oninit(vnode) {
     super.oninit(vnode);
 
+
     app.cache.conversationsRecipient = null;
 
     this.conversations = this.attrs.conversations;
@@ -17,6 +18,7 @@ export default class StartConversationModal extends Modal {
     this.already = false;
 
     this.messageContent = Stream('');
+    if(!this.conversations) this.conversations = [];
   }
 
   title() {
