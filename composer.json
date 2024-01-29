@@ -1,5 +1,5 @@
 {
-  "name": "kyrne/whisper",
+  "name": "nodeloc/whisper",
   "description": "Private Messaging for Flarum.",
   "keywords": [
     "flarum",
@@ -12,6 +12,11 @@
   "type": "flarum-extension",
   "license": "MIT",
   "authors": [
+      {
+          "name": "Nodeloc",
+          "email": "james@nodeloc.com",
+          "homepage": "https://www.nodeloc.com"
+      },
     {
       "name": "Charlie Kern",
       "email": "Charlie.K@redevs.org",
