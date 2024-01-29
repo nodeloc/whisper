@@ -1,22 +1,22 @@
 <?php
 /**
  *
- *  This file is part of kyrne/whisper
+ *  This file is part of nodeloc/whisper
  *
- *  Copyright (c) 2020 Kyrne.
+ *  Copyright (c) 2020 Nodeloc.
  *
  *  For the full copyright and license information, please view the license.md
  *  file that was distributed with this source code.
  *
  */
 
-namespace Kyrne\Whisper\Api\Controllers;
+namespace Nodeloc\Whisper\Api\Controllers;
 
 use Flarum\Api\Controller\AbstractCreateController;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
-use Kyrne\Whisper\Api\Serializers\MessageSerializer;
-use Kyrne\Whisper\Commands\NewMessage;
+use Nodeloc\Whisper\Api\Serializers\MessageSerializer;
+use Nodeloc\Whisper\Commands\NewMessage;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 

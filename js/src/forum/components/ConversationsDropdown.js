@@ -5,7 +5,7 @@ import ConversationsList from './ConversationsList';
 
 export default class ConversationsDropdown extends NotificationsDropdown {
   static initAttrs(attrs) {
-    attrs.label ||= attrs.label || app.translator.trans('kyrne-whisper.forum.dropdown.tooltip');
+    attrs.label ||= attrs.label || app.translator.trans('nodeloc-whisper.forum.dropdown.tooltip');
     attrs.icon ||= 'fas fa-comment-alt';
     attrs.className = 'MessagesDropdown NotificationsDropdown';
 

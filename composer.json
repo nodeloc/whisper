@@ -4,7 +4,7 @@
   "keywords": [
     "flarum",
     "friendsofflarum",
-    "kyrne",
+    "nodeloc",
     "settings",
     "points",
     "private message"
@@ -33,8 +33,8 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/KyrneDev/whisper/issues",
-    "source": "https://github.com/KyrneDev/whisper",
+    "issues": "https://github.com/NodelocDev/whisper/issues",
+    "source": "https://github.com/NodelocDev/whisper",
     "forum": "https://discuss.flarum.org/d/24073-whisper-private-messaging-for-flarum"
   },
   "require": {
@@ -42,7 +42,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Kyrne\\Whisper\\": "src/"
+      "Nodeloc\\Whisper\\": "src/"
     }
   },
   "extra": {

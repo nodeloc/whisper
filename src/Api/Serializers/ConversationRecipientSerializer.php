@@ -1,21 +1,21 @@
 <?php
 /**
  *
- *  This file is part of kyrne/whisper
+ *  This file is part of nodeloc/whisper
  *
- *  Copyright (c) 2020 Kyrne.
+ *  Copyright (c) 2020 Nodeloc.
  *
  *  For the full copyright and license information, please view the license.md
  *  file that was distributed with this source code.
  *
  */
 
-namespace Kyrne\Whisper\Api\Serializers;
+namespace Nodeloc\Whisper\Api\Serializers;
 
 
 use Flarum\Api\Serializer\AbstractSerializer;
 use Flarum\Api\Serializer\UserSerializer;
-use Kyrne\Whisper\ConversationUser;
+use Nodeloc\Whisper\ConversationUser;
 
 class ConversationRecipientSerializer extends AbstractSerializer
 {

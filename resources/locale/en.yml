@@ -1,4 +1,4 @@
-kyrne-whisper:
+nodeloc-whisper:
   admin:
     settings:
       return_key: Return key sends message
@@ -25,7 +25,7 @@ kyrne-whisper:
     chat:
       messages_single: New conversation
       messages_multiple: "{count} total messages"
-      chat_with: "Chat with {username}"
+      chat_with: "Send message"
       start: Start Conversation
       start_of_conversation: Start of Conversation
       read: Read

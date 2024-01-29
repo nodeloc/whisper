@@ -20,7 +20,7 @@ export default class StartConversationModal extends Modal {
   }
 
   title() {
-    return app.translator.trans('kyrne-whisper.forum.modal.title');
+    return app.translator.trans('nodeloc-whisper.forum.modal.title');
   }
 
   className() {
@@ -31,22 +31,22 @@ export default class StartConversationModal extends Modal {
     return [
       <div className="Modal-body">
         {this.already ? [
-          <h2>{app.translator.trans('kyrne-whisper.forum.modal.already', {username: username(this.attrs.user)})}</h2>,
-          <h2>{app.translator.trans('kyrne-whisper.forum.modal.copied', {username: username(this.attrs.user)})}</h2>
+          <h2>{app.translator.trans('nodeloc-whisper.forum.modal.already', {username: username(this.attrs.user)})}</h2>,
+          <h2>{app.translator.trans('nodeloc-whisper.forum.modal.copied', {username: username(this.attrs.user)})}</h2>
           ] :
           <div>
             <div class="helpText">
-              {app.translator.trans('kyrne-whisper.forum.modal.help_start', {username: username(this.attrs.user)})}
+              {app.translator.trans('nodeloc-whisper.forum.modal.help_start', {username: username(this.attrs.user)})}
             </div>
             <div className="AddRecipientModal-form">
 
                 <div className="AddRecipientModal-form-submit">
-                  <textarea value={this.messageContent()} oninput={withAttr('value', this.messageContent)} placeholder={app.translator.trans('kyrne-whisper.forum.chat.text_placeholder')} rows="3"></textarea>
+                  <textarea value={this.messageContent()} oninput={withAttr('value', this.messageContent)} placeholder={app.translator.trans('nodeloc-whisper.forum.chat.text_placeholder')} rows="3"></textarea>
                   {Button.component({
                     type: 'submit',
                     className: 'Button Button--primary',
                     disabled: !this.messageContent(),
-                  }, app.translator.trans('kyrne-whisper.forum.modal.submit')
+                  }, app.translator.trans('nodeloc-whisper.forum.modal.submit')
                   )}
                 </div>
             </div>

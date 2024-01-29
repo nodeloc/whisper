@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Kyrne\Whisper\Api\Controllers;
+namespace Nodeloc\Whisper\Api\Controllers;
 
 use Flarum\Api\Controller\AbstractCreateController;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
-use Kyrne\Whisper\Api\Serializers\ConversationRecipientSerializer;
-use Kyrne\Whisper\Commands\ReadMessage;
+use Nodeloc\Whisper\Api\Serializers\ConversationRecipientSerializer;
+use Nodeloc\Whisper\Commands\ReadMessage;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 

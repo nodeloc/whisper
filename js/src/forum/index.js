@@ -15,7 +15,7 @@ import Button from 'flarum/components/Button';
 import addConversationsDropdown from './addConversationsDropdown'
 import StartConversationModal from "./components/StartConversationModal";
 
-app.initializers.add('kyrne-whisper', function (app) {
+app.initializers.add('nodeloc-whisper', function (app) {
   app.store.models.messages = Message;
   app.store.models.conversations = Conversation;
   app.store.models.conversation_users = ConversationUser;
@@ -57,7 +57,7 @@ app.initializers.add('kyrne-whisper', function (app) {
       items.add('newMessage', Button.component({
         icon: 'fas fa-money-bill',
         onclick: () => app.modal.show(StartConversationModal, {user})
-      }, app.translator.trans('kyrne-whisper.forum.chat.chat_with')));
+      }, app.translator.trans('nodeloc-whisper.forum.chat.chat_with')));
     }
   });
 });

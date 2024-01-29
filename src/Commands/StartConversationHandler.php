@@ -1,23 +1,23 @@
 <?php
 /**
  *
- *  This file is part of kyrne/whisper
+ *  This file is part of nodeloc/whisper
  *
- *  Copyright (c) 2020 Kyrne.
+ *  Copyright (c) 2020 Nodeloc.
  *
  *  For the full copyright and license information, please view the license.md
  *  file that was distributed with this source code.
  *
  */
 
-namespace Kyrne\Whisper\Commands;
+namespace Nodeloc\Whisper\Commands;
 
 
 use Flarum\User\AssertPermissionTrait;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
 use InvalidArgumentException;
-use Kyrne\Whisper\Conversation;
-use Kyrne\Whisper\ConversationUser;
+use Nodeloc\Whisper\Conversation;
+use Nodeloc\Whisper\ConversationUser;
 
 class StartConversationHandler
 {

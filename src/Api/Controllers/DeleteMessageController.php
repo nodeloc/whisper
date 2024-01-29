@@ -1,21 +1,21 @@
 <?php
 /**
  *
- *  This file is part of kyrne/whisper
+ *  This file is part of nodeloc/whisper
  *
- *  Copyright (c) 2020 Kyrne.
+ *  Copyright (c) 2020 Nodeloc.
  *
  *  For the full copyright and license information, please view the license.md
  *  file that was distributed with this source code.
  *
  */
 
-namespace Kyrne\Whisper\Api\Controllers;
+namespace Nodeloc\Whisper\Api\Controllers;
 
 use Flarum\Api\Controller\AbstractDeleteController;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
-use Kyrne\Whisper\Commands\HideMessage;
+use Nodeloc\Whisper\Commands\HideMessage;
 use Psr\Http\Message\ServerRequestInterface;
 
 class DeleteMessageController extends AbstractDeleteController

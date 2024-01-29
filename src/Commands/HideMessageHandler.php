@@ -1,19 +1,19 @@
 <?php
 /**
  *
- *  This file is part of kyrne/whisper
+ *  This file is part of nodeloc/whisper
  *
- *  Copyright (c) 2020 Kyrne.
+ *  Copyright (c) 2020 Nodeloc.
  *
  *  For the full copyright and license information, please view the license.md
  *  file that was distributed with this source code.
  *
  */
 
-namespace Kyrne\Whisper\Commands;
+namespace Nodeloc\Whisper\Commands;
 
 use Flarum\User\Exception\PermissionDeniedException;
-use Kyrne\Whisper\Message;
+use Nodeloc\Whisper\Message;
 
 class HideMessageHandler
 {

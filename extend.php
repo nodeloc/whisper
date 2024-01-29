@@ -1,16 +1,16 @@
 <?php
 
 
-namespace Kyrne\Whisper;
+namespace Nodeloc\Whisper;
 
 use Flarum\Api\Controller;
 use Flarum\Extend;
 use Flarum\User\User;
 use Flarum\Api\Serializer\ForumSerializer;
 use Flarum\Api\Serializer\CurrentUserSerializer;
-use Kyrne\Whisper\Api\Controllers;
-use Kyrne\Whisper\Api\Serializers\ConversationRecipientSerializer;
-use Kyrne\Whisper\Api\Serializers\ConversationSerializer;
+use Nodeloc\Whisper\Api\Controllers;
+use Nodeloc\Whisper\Api\Serializers\ConversationRecipientSerializer;
+use Nodeloc\Whisper\Api\Serializers\ConversationSerializer;
 
 return [
     (new Extend\Frontend('admin'))
@@ -46,7 +46,7 @@ return [
         }),
 
     (new Extend\Settings())
-        ->serializeToForum('whisperReturnKey', 'kyrne-whisper.return_key', function ($value) {
+        ->serializeToForum('whisperReturnKey', 'nodeloc-whisper.return_key', function ($value) {
             return (bool) $value;
         }),
     (new Extend\ApiSerializer(CurrentUserSerializer::class))

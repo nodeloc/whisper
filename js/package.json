@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "@kyrne/whisper",
+    "name": "@nodeloc/whisper",
     "prettier": "@flarum/prettier-config",
     "dependencies": {
         "flarum-webpack-config": "^2.0.0",
