@@ -1,12 +1,12 @@
-import Modal from "flarum/components/Modal";
-import Button from "flarum/components/Button";
-import RecipientSearch from "./RecipientSearch";
-import username from 'flarum/helpers/username';
-import Stream from 'flarum/utils/Stream';
-import withAttr from 'flarum/utils/withAttr';
+import Modal from 'flarum/common/components/Modal';
+import Button from 'flarum/common/components/Button';
+import RecipientSearch from './RecipientSearch';
+import username from 'flarum/common/helpers/username';
+import Stream from 'flarum/common/utils/Stream';
+import withAttr from 'flarum/common/utils/withAttr';
+import app from 'flarum/forum/app';
 
 export default class StartConversationModal extends Modal {
-
   oninit(vnode) {
     super.oninit(vnode);
 
@@ -27,26 +27,19 @@ export default class StartConversationModal extends Modal {
     return 'StartConversationModal Modal--medium';
   }
 
-  onbeforeupdate() {
-    $('.Modal-content').on('click tap', (ev) => {
-      ev.stopImmediatePropagation();
-    })
-  }
-
   content() {
     return [
       <div className="Modal-body">
         {this.already ? [
-          <h2>{app.translator.trans('kyrne-whisper.forum.modal.already', {username: username(this.recpient)})}</h2>,
-          <h2>{app.translator.trans('kyrne-whisper.forum.modal.copied', {username: username(this.recpient)})}</h2>
+          <h2>{app.translator.trans('kyrne-whisper.forum.modal.already', {username: username(this.attrs.user)})}</h2>,
+          <h2>{app.translator.trans('kyrne-whisper.forum.modal.copied', {username: username(this.attrs.user)})}</h2>
           ] :
           <div>
             <div class="helpText">
-              {app.cache.conversationsRecipient !== null ? app.translator.trans('kyrne-whisper.forum.modal.help_start', {username: username(app.cache.conversationsRecipient)}) : app.translator.trans('kyrne-whisper.forum.modal.help')}
+              {app.translator.trans('kyrne-whisper.forum.modal.help_start', {username: username(this.attrs.user)})}
             </div>
             <div className="AddRecipientModal-form">
-              <RecipientSearch state={app.search} ></RecipientSearch>
-              {app.cache.conversationsRecipient !== null ?
+
                 <div className="AddRecipientModal-form-submit">
                   <textarea value={this.messageContent()} oninput={withAttr('value', this.messageContent)} placeholder={app.translator.trans('kyrne-whisper.forum.chat.text_placeholder')} rows="3"></textarea>
                   {Button.component({
@@ -56,7 +49,6 @@ export default class StartConversationModal extends Modal {
                   }, app.translator.trans('kyrne-whisper.forum.modal.submit')
                   )}
                 </div>
-                : ''}
             </div>
           </div>
         }
@@ -67,7 +59,7 @@ export default class StartConversationModal extends Modal {
   onsubmit(e) {
     e.preventDefault();
 
-    const recipient = app.cache.conversationsRecipient;
+    const recipient = this.attrs.user;
     this.recpient = recipient;
     app.cache.conversationsRecipient = null;
 
@@ -84,15 +76,9 @@ export default class StartConversationModal extends Modal {
         m.redraw();
         app.modal.close();
       } else {
-        let input = document.createElement('textarea');
-        document.body.appendChild(input);
-        input.value = this.messageContent();
-        input.focus();
-        input.select();
-        document.execCommand('Copy');
-        input.remove();
-        this.already = true;
+        console.log(conversation);
         m.redraw();
+        app.modal.close();
       }
     })
   }

@@ -60,35 +60,29 @@ class StartConversationHandler
             }
         }
 
-        if ($oldConversation) {
-            $oldConversation->notNew = true;
-            return $oldConversation;
+        if($oldConversation){
+            $oldConversation->notNew=true;
+            $conversation=$oldConversation;
+        }else{
+            $conversation=Conversation::start();
+//TODOvalidator
+            $conversation->save();
+            foreach(array_merge([$actor->id],(array)$data['attributes']['recipient'])as$recipientId){
+                $recipient=new ConversationUser();
+                $recipient->conversation_id=$conversation->id;
+                $recipient->user_id=$recipientId;
+
+                $recipient->save();
+            }
         }
-
-        $conversation = Conversation::start();
-
-        // TODO validator
-
-        $conversation->save();
-
-        foreach (array_merge([$actor->id], (array)$data['attributes']['recipient']) as $recipientId) {
-            $recipient = new ConversationUser();
-            $recipient->conversation_id = $conversation->id;
-            $recipient->user_id = $recipientId;
-
-            $recipient->save();
-        }
-
-        try {
+        try{
             $this->bus->dispatch(
-                new NewMessage($actor, $data, $conversation->id)
+                new NewMessage($actor,$data,$conversation->id)
             );
-        } catch (\Exception $e) {
+        }catch(\Exception$e){
             $conversation->delete;
-
-            throw $e;
+            throw$e;
         }
-
-        return $conversation;
+        return$conversation;
     }
 }

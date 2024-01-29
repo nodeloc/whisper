@@ -5,7 +5,6 @@ namespace Kyrne\Whisper;
 
 use Flarum\Api\Controller;
 use Flarum\Extend;
-use Flarum\Formatter\Event\Configuring;
 use Flarum\User\User;
 use Flarum\Api\Serializer\ForumSerializer;
 use Flarum\Api\Serializer\CurrentUserSerializer;

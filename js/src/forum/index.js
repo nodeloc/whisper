@@ -9,8 +9,11 @@ import Model from 'flarum/Model';
 import ConversationsPage from './components/ConversationsPage';
 import ConversationViewPage from './components/ConversationViewPage';
 import Stream from 'flarum/utils/Stream';
+import UserControls from 'flarum/utils/UserControls';
+import Button from 'flarum/components/Button';
 
 import addConversationsDropdown from './addConversationsDropdown'
+import StartConversationModal from "./components/StartConversationModal";
 
 app.initializers.add('kyrne-whisper', function (app) {
   app.store.models.messages = Message;
@@ -25,23 +28,23 @@ app.initializers.add('kyrne-whisper', function (app) {
 
   addConversationsDropdown();
 
-  extend(IndexPage.prototype, 'oncreate', function() {
+  extend(IndexPage.prototype, 'oncreate', function () {
     if (app.pusher) {
-      app.pusher.then(object => {
+      app.pusher.then((object) => {
         const channels = object.channels;
         if (channels.user) {
-          channels.user.bind('newMessage', data => {
+          channels.user.bind('newMessage', (data) => {
             app.session.user.unreadMessages = Stream(app.session.user.unreadMessages() + 1);
             m.redraw();
           });
         }
       });
     }
-  })
+  });
 
-  extend(IndexPage.prototype, 'onremove', function() {
+  extend(IndexPage.prototype, 'onremove', function () {
     if (app.pusher) {
-      app.pusher.then(object => {
+      app.pusher.then((object) => {
         const channels = object.channels;
         if (channels.user) {
           channels.user.unbind('newMessage');
@@ -49,4 +52,12 @@ app.initializers.add('kyrne-whisper', function (app) {
       });
     }
   })
+  extend(UserControls, 'moderationControls', (items, user) => {
+    if (app.forum.attribute('canMessage')) {
+      items.add('newMessage', Button.component({
+        icon: 'fas fa-money-bill',
+        onclick: () => app.modal.show(StartConversationModal, {user})
+      }, app.translator.trans('kyrne-whisper.forum.chat.chat_with')));
+    }
+  });
 });

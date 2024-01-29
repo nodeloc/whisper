@@ -15,6 +15,10 @@ use Illuminate\Database\Schema\Builder;
 
 return [
     'up' => function (Builder $schema) {
+        if ($schema->hasColumn('users', 'unread_messages')) {
+            return;
+        }
+
         $schema->table('users', function (Blueprint $table) {
             $table->addColumn('integer', 'unread_messages');
         });

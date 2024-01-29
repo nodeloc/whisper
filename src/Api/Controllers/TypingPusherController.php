@@ -15,8 +15,8 @@ namespace Kyrne\Whisper\Api\Controllers;
 use Flarum\Api\Controller\AbstractShowController;
 use Flarum\Api\Serializer\BasicUserSerializer;
 use Psr\Http\Message\ServerRequestInterface;
+use Pusher;
 use Tobscure\JsonApi\Document;
-use Pusher\Pusher;
 
 class TypingPusherController extends AbstractShowController
 {
@@ -26,8 +26,8 @@ class TypingPusherController extends AbstractShowController
     {
         $data = $request->getParsedBody();
 
-        if (app()->bound(Pusher::class)) {
-            app(Pusher::class)->trigger('private-user' . $data['userId'], 'typing', [
+        if (resolve('container')->bound(Pusher::class)) {
+            resolve('container')->make(Pusher::class)->trigger('private-user' . $data['userId'], 'typing', [
                 'conversationId' => $data['conversationId']
             ]);
         }
