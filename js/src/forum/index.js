@@ -25,6 +25,7 @@ app.initializers.add('nodeloc-whisper', function (app) {
 
   app.routes.conversations = { path: '/whisper/conversations', component: ConversationsPage };
   app.routes.messages = { path: '/whisper/messages/:id', component: ConversationViewPage };
+// 构建路由对象
 
   addConversationsDropdown();
 
@@ -55,7 +56,7 @@ app.initializers.add('nodeloc-whisper', function (app) {
   extend(UserControls, 'moderationControls', (items, user) => {
     if (app.forum.attribute('canMessage')) {
       items.add('newMessage', Button.component({
-        icon: 'fas fa-money-bill',
+        icon: 'fas fa-sms',
         onclick: () => app.modal.show(StartConversationModal, {user})
       }, app.translator.trans('nodeloc-whisper.forum.chat.chat_with')));
     }

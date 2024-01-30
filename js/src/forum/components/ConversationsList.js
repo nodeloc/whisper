@@ -65,7 +65,6 @@ export default class ConversationsList extends Component {
               </ul>
             )}
           </div>
-
           {!this.mobile && this.conversationComponent}
         </div>
       </div>

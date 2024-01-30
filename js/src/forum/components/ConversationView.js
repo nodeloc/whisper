@@ -183,9 +183,8 @@ export default class ConversationView extends Component {
       <div style={this.idParam && this.mobile ? 'width: 100%' : ''} className="chat">
         <div className="chat-header clearfix">
           {avatar(this.user)}
-
           <div className="chat-about">
-            <div className="chat-with">{app.translator.trans('nodeloc-whisper.forum.chat.chat_with', { username: username(this.user) })}</div>
+            <div className="chat-with">{ username(this.user) }</div>
             <div className="chat-num-messages">
               {app.translator.trans(
                 'nodeloc-whisper.forum.chat.messages_' + (parseInt(this.conversation.totalMessages()) > 1 ? 'multiple' : 'single'),
@@ -194,7 +193,6 @@ export default class ConversationView extends Component {
             </div>
           </div>
         </div>
-
         {this.messages && this.messages.length > 0 && !this.loading ? (
           [
             <div className="chat-history">

@@ -9,14 +9,11 @@ nodeloc-whisper:
     dropdown:
       tooltip: Conversations
     modal:
-      title: Start Conversation
+      title: Send message
       help: Start typing a username to start a chat.
-      help_start: >-
-        Type your first message. This will be the only message you can send
-        until {username} responds. Click the user to select a different
-        recipient.
+      help_start: Send message to {username}.
       search_recipients: Enter username...
-      submit: Send & Start Conversation
+      submit: Send
       copied: Your message has been copied to the clipboard.
       more_users: >-
         If you don't see the user you are looking for, they don't have private
@@ -32,3 +29,4 @@ nodeloc-whisper:
       cant_start: Can't Start Conversation
       text_placeholder: Type your message
       send: Send Message
+      send_success: Message sent success

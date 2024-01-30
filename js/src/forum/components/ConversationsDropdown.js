@@ -2,11 +2,20 @@ import app from 'flarum/forum/app';
 import NotificationsDropdown from 'flarum/forum/components/NotificationsDropdown';
 
 import ConversationsList from './ConversationsList';
+import ConversationsPage from "./ConversationsPage";
+import ConversationViewPage from "./ConversationViewPage";
 
 export default class ConversationsDropdown extends NotificationsDropdown {
+  oninit(vnode) {
+    super.oninit(vnode);
+    this.onclick = this.onclick.bind(this);
+    this.getMenu = this.getMenu.bind(this);
+    this.goToRoute = this.goToRoute.bind(this);
+  }
+
   static initAttrs(attrs) {
-    attrs.label ||= attrs.label || app.translator.trans('nodeloc-whisper.forum.dropdown.tooltip');
-    attrs.icon ||= 'fas fa-comment-alt';
+    attrs.label ||= app.translator.trans('nodeloc-whisper.forum.dropdown.tooltip');
+    attrs.icon ||= 'fas fa-sms';
     attrs.className = 'MessagesDropdown NotificationsDropdown';
 
     super.initAttrs(attrs);
@@ -20,14 +29,20 @@ export default class ConversationsDropdown extends NotificationsDropdown {
 
   getMenu() {
     return (
-      <form className={'Dropdown-menu ' + this.attrs.menuClassName}>
-        {!!this.showing && <ConversationsList mobile={false}/>}
-      </form>
+        <form className={'Dropdown-menu ' + this.attrs.menuClassName}>
+          {!!this.showing && <ConversationsList mobile={false}/>}
+        </form>
     );
   }
 
   goToRoute() {
-    m.route(app.route('conversations'));
+    const conversationsRoute = app.route('conversations');
+    console.error('Conversations route:',app.routes);
+    if (app.route && conversationsRoute) {
+      m.route(conversationsRoute);
+    } else {
+      console.error('Conversations route not found!');
+    }
   }
 
   getUnreadCount() {
