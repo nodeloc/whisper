@@ -1,0 +1,29 @@
+nodeloc-whisper:
+  admin:
+    settings:
+      return_key: 按回车键发送私信
+      title: Whisper 设置
+    permissions:
+      start_label: 发送私信
+  forum:
+    dropdown:
+      tooltip: 私信
+    modal:
+      title: 新私信
+      help: 输入用户名开始聊天
+      help_start: "发送消息给{username}"
+      search_recipients: 输入用户名...
+      submit: 发送
+      copied: 消息已复制到剪贴板
+      more_users: 如果在此处没有搜索到用户，表示他们没有启用私信设置。
+      already: "你和{username}已经有一个私信会话了。"
+    chat:
+      messages_single: 新私信
+      messages_multiple: "共{count}条消息"
+      chat_with: "和 {username} 的对话"
+      start: 新私信
+      start_of_conversation: 您的传奇会话从此处开始
+      read: 已读
+      cant_start: 无法开始对话
+      text_placeholder: 在此输入消息
+      send: 发送
