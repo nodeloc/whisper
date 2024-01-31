@@ -90,7 +90,7 @@
 
   @media (@tablet) {
     .chat {
-      width: 70%
+      width: 100%
     }
   }
   @media (min-width: @screen-desktop) {
@@ -190,7 +190,11 @@
     }
 
   }
-
+  @media (min-width: 768px) {
+    .chat {
+      float: left;
+    }
+  }
   .chat {
     max-width: 640px;
     float: left;
