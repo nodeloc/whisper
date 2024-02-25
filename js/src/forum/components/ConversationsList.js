@@ -15,16 +15,6 @@ export default class ConversationsList extends Component {
 
   onupdate() {}
 
-  onbeforeupdate() {
-    const list = $('.ConversationsList-list');
-
-    list.off('scroll').on('scroll', () => {
-      if (list.scrollTop() + list.innerHeight() >= list[0].scrollHeight) {
-        this.loadMore();
-      }
-    });
-  }
-
   view() {
     if (this.loading) return;
     if (!app.cache.conversations) return;

@@ -82,9 +82,13 @@
     .container {
       width: 720px;
     }
-
     .chat {
       width: 640px
+    }
+  }
+  @media (min-width: 800px) {
+    .ConversationsList-list {
+      overflow-x: hidden;
     }
   }
 
@@ -98,7 +102,10 @@
       width: 80px;
     }
   }
-  @media (@phone) {
+  @media (max-width: 798px) {
+    .ConversationsList-list {
+      overflow-x: auto;
+    }
     .people-list {
       overflow-x: auto;
       white-space: nowrap;
