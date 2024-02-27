@@ -20,7 +20,7 @@ nodeloc-whisper:
     chat:
       messages_single: 新私信
       messages_multiple: "共{count}条消息"
-      chat_with: "和 {username} 的对话"
+      chat_with: "新私信"
       start: 新私信
       start_of_conversation: 您的传奇会话从此处开始
       read: 已读
