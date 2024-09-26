@@ -15,6 +15,23 @@ export default class ConversationsList extends Component {
 
   onupdate() {}
 
+  onbeforeupdate() {
+    const list = $('.ConversationsList-list');
+    list.off('scroll').on('scroll', () => {
+      if (window.innerWidth <= 768) {
+        // 移动端左右滑动检测
+        if (list.scrollLeft() + list.innerWidth() >= list[0].scrollWidth) {
+          this.loadMore();
+        }
+      } else {
+        // 桌面端上下滚动检测
+        if (list.scrollTop() + list.innerHeight() >= list[0].scrollHeight) {
+          this.loadMore();
+        }
+      }
+    });
+  }
+
   view() {
     if (this.loading) return;
     if (!app.cache.conversations) return;
@@ -70,7 +87,7 @@ export default class ConversationsList extends Component {
 
   loadMore() {
     this.loading = true;
-    m.redraw();
+    //m.redraw();
 
     app.store
       .find('whisper/conversations', { offset: app.cache.conversations.length })

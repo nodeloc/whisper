@@ -3,6 +3,7 @@
     "name": "@nodeloc/whisper",
     "prettier": "@flarum/prettier-config",
     "dependencies": {
+        "@nodeloc/whisper": "file:",
         "flarum-webpack-config": "^2.0.0",
         "webpack": "^5.76.0",
         "webpack-cli": "^5.1.4"

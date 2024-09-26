@@ -9,6 +9,7 @@ import Stream from 'flarum/common/utils/Stream';
 import withAttr from 'flarum/common/utils/withAttr';
 import icon from 'flarum/common/helpers/icon';
 import app from 'flarum/forum/app';
+import Link from "flarum/components/Link";
 
 export default class ConversationView extends Component {
   oninit(vnode) {
@@ -184,7 +185,11 @@ export default class ConversationView extends Component {
         <div className="chat-header clearfix">
           {avatar(this.user)}
           <div className="chat-about">
-            <div className="chat-with">{ username(this.user) }</div>
+            <div className="chat-with">
+            <Link href={app.route.user(this.user)}>
+            {username(this.user)}
+            </Link>
+            </div>
             <div className="chat-num-messages">
               {app.translator.trans(
                 'nodeloc-whisper.forum.chat.messages_' + (parseInt(this.conversation.totalMessages()) > 1 ? 'multiple' : 'single'),
