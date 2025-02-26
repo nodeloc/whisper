@@ -12,7 +12,7 @@
 
 namespace Nodeloc\Whisper\Commands;
 
-
+use Flarum\Notification\NotificationSyncer;
 use Flarum\User\Exception\PermissionDeniedException;
 use Flarum\User\User;
 use Nodeloc\Whisper\Conversation;
@@ -23,6 +23,13 @@ use Pusher\Pusher;
 
 class NewMessageHandler
 {
+    protected $notifications;
+
+    public function __construct(NotificationSyncer $notifications)
+    {
+        $this->notifications = $notifications;
+    }
+
     public function handle(NewMessage $command)
     {
         $actor = $command->actor;
@@ -74,9 +81,6 @@ class NewMessageHandler
     }
 
     public function sendNewMessageNotification($message, $conversation, $actor, $recipient) {
-        if(!$recipient->can('nodeloc-whisper.allowUsersToReceiveEmailNotifications'))
-            return;
-
         $this->notifications->sync(
             new NewPrivateMessageBlueprint($message, $conversation, $actor),
             [$recipient]

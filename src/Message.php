@@ -23,7 +23,7 @@ class Message extends AbstractModel
 
     public $timestamps = true;
 
-    protected $appends = ['human_time'];
+    //protected $appends = ['human_time'];
 
     protected $dates = ['created_at'];
 

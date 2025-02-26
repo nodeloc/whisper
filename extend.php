@@ -63,4 +63,6 @@ return [
         ->addInclude('conversations'),
     (new Extend\ApiController(Controller\UpdateUserController::class))
         ->addInclude('conversations'),
+    (new Extend\View)
+        ->namespace('nodeloc-whisper', __DIR__.'/views'),
 ];
