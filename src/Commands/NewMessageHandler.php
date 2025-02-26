@@ -15,10 +15,10 @@ namespace Nodeloc\Whisper\Commands;
 
 use Flarum\User\Exception\PermissionDeniedException;
 use Flarum\User\User;
-use http\Message\Parser;
 use Nodeloc\Whisper\Conversation;
 use Nodeloc\Whisper\ConversationUser;
 use Nodeloc\Whisper\Message;
+use Nodeloc\Whisper\Notifications\NewPrivateMessageBlueprint;
 use Pusher\Pusher;
 
 class NewMessageHandler
@@ -49,8 +49,13 @@ class NewMessageHandler
         $message->save();
 
         foreach (ConversationUser::where('conversation_id', $conversation->id)->pluck('user_id')->all() as $userId) {
+            if ($userId === $actor->id) {
+                continue;
+            }
+            $recipient = User::find($userId);
             User::find($userId)->increment('unread_messages');
             $this->pushNewMessage($userId, $message, $conversation->id);
+            $this->sendNewMessageNotification($message, $conversation, $actor, $recipient);
         }
 
         return $message;
@@ -66,5 +71,15 @@ class NewMessageHandler
                 'conversationId' => $conversationId
             ]);
         }
+    }
+
+    public function sendNewMessageNotification($message, $conversation, $actor, $recipient) {
+        if(!$recipient->can('nodeloc-whisper.allowUsersToReceiveEmailNotifications'))
+            return;
+
+        $this->notifications->sync(
+            new NewPrivateMessageBlueprint($message, $conversation, $actor),
+            [$recipient]
+        );
     }
 }

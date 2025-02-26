@@ -11,6 +11,8 @@ use Flarum\Api\Serializer\CurrentUserSerializer;
 use Nodeloc\Whisper\Api\Controllers;
 use Nodeloc\Whisper\Api\Serializers\ConversationRecipientSerializer;
 use Nodeloc\Whisper\Api\Serializers\ConversationSerializer;
+use Nodeloc\Whisper\Api\Serializers\MessageSerializer;
+use Nodeloc\Whisper\Notifications\NewPrivateMessageBlueprint;
 
 return [
     (new Extend\Frontend('admin'))
@@ -44,7 +46,8 @@ return [
         ->attribute('unreadMessages', function (CurrentUserSerializer $serializer) {
             return $serializer->getActor()->unread_messages;
         }),
-
+    (new Extend\Notification())
+        ->type(NewPrivateMessageBlueprint::class, MessageSerializer::class, ['email']),
     (new Extend\Settings())
         ->serializeToForum('whisperReturnKey', 'nodeloc-whisper.return_key', function ($value) {
             return (bool) $value;

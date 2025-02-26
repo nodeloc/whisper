@@ -71,6 +71,9 @@ export default class ConversationsList extends Component {
                   })}
               </ul>
             )}
+            <div className="ConversationsList-loading" style={{ display: 'none', textAlign: 'center', padding: '10px' }}>
+              <span>加载中...</span>
+            </div>
           </div>
           {!this.mobile && this.conversationComponent}
         </div>
@@ -86,8 +89,14 @@ export default class ConversationsList extends Component {
   }
 
   loadMore() {
+    if (this.loading) return;
     this.loading = true;
-    //m.redraw();
+
+    // 找到并更新 loading UI，而不重绘整个组件
+    const loadingElement = document.querySelector('.ConversationsList-loading');
+    if (loadingElement) {
+      loadingElement.style.display = 'block';
+    }
 
     app.store
       .find('whisper/conversations', { offset: app.cache.conversations.length })
@@ -100,7 +109,11 @@ export default class ConversationsList extends Component {
       .catch(() => {})
       .then(() => {
         this.loading = false;
-        m.redraw();
+
+        // 仅隐藏 loading UI，而不调用 m.redraw()
+        if (loadingElement) {
+          loadingElement.style.display = 'none';
+        }
       });
   }
 

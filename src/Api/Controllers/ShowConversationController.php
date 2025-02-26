@@ -51,7 +51,7 @@ class ShowConversationController extends AbstractShowController
 
         $conversation = Conversation::findOrFail($conversationId);
 
-        if (!$conversation->recipients()->exist('user_id', $actor->id)->get()) {
+        if (!$conversation->recipients()->where('user_id', $actor->id)->exists()) {
             throw new PermissionDeniedException;
         }
 
